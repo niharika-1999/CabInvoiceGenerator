@@ -3,6 +3,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class InvoiceGeneratorTest {
+	InvoiceGenerator invoice =  new InvoiceGenerator();
+	
 	@Test
 	public void DistanceAndTimeShouldReturnTotalFare()
 	{
@@ -12,7 +14,7 @@ public class InvoiceGeneratorTest {
 		double fare = invoice.calculateFare(distance, time);
 		Assert.assertEquals(25.0, fare, 0.0);
 	}
-	
+
 	@Test
 	public void LessDistanceAndTimeShouldReturnMinFare()
 	{
@@ -22,19 +24,19 @@ public class InvoiceGeneratorTest {
 		double fare = invoice.calculateFare(distance, time);
 		Assert.assertEquals(5.0, fare, 0.0);
 	}
-	
+
 	@Test
 	public void MultipleRidesShouldReturnTotalFare()
 	{
-		InvoiceGenerator invoice =  new InvoiceGenerator();
 		Ride[] rides = { new Ride(2.0, 5.0),new Ride(0.1, 1.0)};
-		double fare = invoice.calculateFare(rides);
-		Assert.assertEquals(30.0, fare, 0.0);
+		Invoice summary = invoice.calculateFare(rides);
+		Invoice expectedInvoice = new Invoice(2,30.0);
+		Assert.assertEquals(expectedInvoice, summary);
 	}
 }
-	
-	
-	
-	
+
+
+
+
 
 

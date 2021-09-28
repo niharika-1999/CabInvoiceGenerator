@@ -10,7 +10,7 @@ public class InvoiceGenerator {
 		System.out.println("Welcome to Invoice Generator System");
 	}
 	
-	public double calculateFare(double distance, double time)
+	public double calculateFare(double distance, double time) //calculateFare calculates the total fare of passenger 
 	{
 		double totalFare;
 		totalFare = (10 * distance) + (time * 1);
@@ -19,14 +19,14 @@ public class InvoiceGenerator {
 		return totalFare;
 	}
 	
-	public double calculateFare(Ride[] rides) 
+	public Invoice calculateFare(Ride[] rides) //calculateFare calculates the total fare for rides
 	{
 		double totalFare = 0.0;
 		for (Ride ride : rides) 
 		{
 			totalFare += this.calculateFare(ride.distance, ride.time);
 		}
-		return totalFare;
+		return new Invoice(rides.length,totalFare);
 	}
 	
 
